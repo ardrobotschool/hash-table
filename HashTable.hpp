@@ -17,6 +17,15 @@ struct Student{//Datum in studentList
   }
 };
 
+struct Node{
+    Node(Student* data) : student(data), next(0) {}
+    ~Node(){
+        delete data;
+    }
+    Student* data;
+    Node* next;
+}
+
 class HashTable{
    public:
     Student* getStudent(int id);
@@ -24,7 +33,7 @@ class HashTable{
     bool deleteStudent(int id);
     void printStudentList();
    private: 
-    Student** list;
+    Node** list;
     int size;
     int hash(int id);
 };
