@@ -11,6 +11,10 @@ struct Student{//Datum in studentList
   char *lname;
   int id;
   float gpa;
+  void print(){
+      //Prints student's information.
+      cout << lname << ", " << fname << ". ID: " << id << "  GPA: " << gpa;
+  }
   ~Student(){//These should be allocated on the heap
     delete[] fname;
     delete[] lname;

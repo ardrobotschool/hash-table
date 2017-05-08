@@ -21,3 +21,13 @@ Student* HashTable::getStudent(int id){
        }
     }
 }
+
+void HashTable::printStudentList(){
+    for(int i = 0; i < size; i++){
+        Node* current = list[i];
+        while(current != 0){
+            current->data->print();
+            current = current->next;
+        }
+    }
+}
