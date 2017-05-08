@@ -40,4 +40,5 @@ class HashTable{
     Node** list;
     int size;
     int hash(int id);
+    Node* getNode(int id);
 };
