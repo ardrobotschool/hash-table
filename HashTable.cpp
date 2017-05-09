@@ -8,8 +8,18 @@ int HashTable::hash(int id){
 }
 
 Student* HashTable::getStudent(int id){
-    Node* node = getNode(id);
-    return node == 0 ? 0 : node->data;
+    Node* current = list[hash(id)];
+    while(true){
+       if(current == 0){
+           return 0;
+       }
+       else if(current->data->id == id){
+          return current->data; 
+       }
+       else{
+           current = current->next;
+       }
+    }
 }
 
 void HashTable::printStudentList(){
@@ -19,20 +29,5 @@ void HashTable::printStudentList(){
             current->data->print();
             current = current->next;
         }
-    }
-}
-
-Node* getNode(int id){
-    Node* current = list[hash(id)];
-    while(true){
-       if(current == 0){
-           return 0;
-       }
-       else if(current->data->id == id){
-          return current; 
-       }
-       else{
-           current = current->next;
-       }
     }
 }
