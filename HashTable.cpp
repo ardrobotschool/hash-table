@@ -31,3 +31,19 @@ void HashTable::printStudentList(){
         }
     }
 }
+
+bool HashTable::deleteStudent(int id){
+    Node** current = &list[hash(id)];
+    while(*current != 0){
+        if((*current)->data->id == id){
+            Node* temp = *current;
+            *current = (*current)->next;
+            delete temp;
+            return true;
+        }
+        else{
+           current = &((*current)->next); 
+        } 
+    }
+    return false;
+}
