@@ -32,6 +32,8 @@ struct Node{
 
 class HashTable{
    public:
+    HashTable();
+    ~HashTable();
     Student* getStudent(int id);
     void addStudent(char* fname, char* lname, int id, float gpa);
     bool deleteStudent(int id);
@@ -40,4 +42,5 @@ class HashTable{
     Node** list;
     int size;
     int hash(int id);
+    void addStudent(Student*);
 };

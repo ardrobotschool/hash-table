@@ -3,6 +3,24 @@
 
 using namespace std;
 
+HashTable::HashTable(){
+    size = 100;
+    list = new Node*[100];
+}
+
+HashTable::~HashTable(){
+    for(int i = 0; i<size; i++){
+        Node* current = list[i];
+        while(current){
+            Node* temp = current;
+            current = current->next;
+            delete current->data;
+            delete current;
+        }
+    }
+    delete list;
+}
+
 int HashTable::hash(int id){
     return id % size;
 }
@@ -63,7 +81,7 @@ void addStudent(char *fname, char *lname, int id, float gpa){
         list = new Node*[size];
         for(int i = 0; i < size/2; i++){
             Node* current = old[i];
-            while(current != 0){
+            while(current){
                 addStudent(current->data);
                 Node* temp = current;
                 current = current->next;
@@ -76,4 +94,10 @@ void addStudent(char *fname, char *lname, int id, float gpa){
     else{
         *current = new Node(new Student(fname, lname, id, gpa));
     }
-}    
+}
+
+void addStudent(Student* student){
+    addStudent(student->fname, student->lname, student-> id, student->gpa);
+    delete student;
+}
+
