@@ -38,6 +38,7 @@ bool HashTable::deleteStudent(int id){
         if((*current)->data->id == id){
             Node* temp = *current;
             *current = (*current)->next;
+            delete temp->data;
             delete temp;
             return true;
         }
@@ -47,3 +48,32 @@ bool HashTable::deleteStudent(int id){
     }
     return false;
 }
+
+void addStudent(char *fname, char *lname, int id, float gpa){
+    Node** current = &list[hash(id)];
+    int count = 0;
+    while(*current != 0){
+        *current = &(*current)->next;
+        count++;
+    }
+    if(count >= 3){
+        //Double array size!
+        size *= 2;
+        Node** old = list;
+        list = new Node*[size];
+        for(int i = 0; i < size/2; i++){
+            Node* current = old[i];
+            while(current != 0){
+                addStudent(current->data);
+                Node* temp = current;
+                current = current->next;
+                delete temp;
+            }
+        }
+        delete[] old;
+        addStudent(fname, lname, id, float gpa);
+    }
+    else{
+        *current = new Node(new Student(fname, lname, id, gpa));
+    }
+}    

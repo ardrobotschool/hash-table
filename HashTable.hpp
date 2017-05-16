@@ -24,7 +24,7 @@ struct Student{//Datum in studentList
 struct Node{
     Node(Student* data) : student(data), next(0) {}
     ~Node(){
-        delete data;
+        //delete data;
     }
     Student* data;
     Node* next;
