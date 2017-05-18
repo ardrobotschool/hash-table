@@ -14,11 +14,11 @@ HashTable::~HashTable(){
         while(current){
             Node* temp = current;
             current = current->next;
-            delete current->data;
-            delete current;
+            delete temp->data;
+            delete temp;
         }
     }
-    delete list;
+    delete[] list;
 }
 
 int HashTable::hash(int id){
