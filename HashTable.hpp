@@ -1,11 +1,12 @@
 //Hash table of students; ID is used as the key.
+#include <cstring>
 
 struct Student{//Datum in studentList
-  Student(const char* newFname, const char* newLname, int id, float gpa){
+  Student(const char* newFname, const char* newLname, int newId, float newGpa){
       fname = strcpy(new char[strlen(newFname) + 1], newFname);
       lname = strcpy(new char[strlen(newLname) + 1], newLname);
-      id = id;
-      gpa = gpa;
+      id = newId;
+      gpa = newGpa;
   }  
   char *fname;
   char *lname;
@@ -13,7 +14,7 @@ struct Student{//Datum in studentList
   float gpa;
   void print(){
       //Prints student's information.
-      cout << lname << ", " << fname << ". ID: " << id << "  GPA: " << gpa;
+      std::cout << lname << ", " << fname << ". ID: " << id << "  GPA: " << gpa << std::endl;
   }
   ~Student(){//These should be allocated on the heap
     delete[] fname;
@@ -22,13 +23,13 @@ struct Student{//Datum in studentList
 };
 
 struct Node{
-    Node(Student* data) : student(data), next(0) {}
+    Node(Student* data) : data(data), next(0) {}
     ~Node(){
         //delete data;
     }
     Student* data;
     Node* next;
-}
+};
 
 class HashTable{
    public:

@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstring>
 #include <cctype>
+#include "HashTable.hpp"
 
 using namespace std;
 
@@ -35,6 +36,7 @@ int main(){
       int id;
       float gpa;
       cout << "Enter the following information.\nFirst name: ";
+      cin.ignore();
       cin.getline(fname, 32);
       cout << "Last name: ";
       cin.getline(lname, 32);
@@ -43,10 +45,10 @@ int main(){
       cout << "GPA: ";
       cin >> gpa;
       hashTable.addStudent(fname, lname, id, gpa);
-      cout << "Student added. << endl;
+      cout << "Student added." << endl;
     }
     else if(strcmp(input, "print") == 0){
-      hashTable.print();
+      hashTable.printStudentList();
     }
     else if(strcmp(input, "delete") == 0){
       int id;

@@ -67,11 +67,11 @@ bool HashTable::deleteStudent(int id){
     return false;
 }
 
-void addStudent(char *fname, char *lname, int id, float gpa){
+void HashTable::addStudent(char *fname, char *lname, int id, float gpa){
     Node** current = &list[hash(id)];
     int count = 0;
     while(*current != 0){
-        *current = &(*current)->next;
+        current = &(*current)->next;
         count++;
     }
     if(count >= 3){
@@ -89,14 +89,14 @@ void addStudent(char *fname, char *lname, int id, float gpa){
             }
         }
         delete[] old;
-        addStudent(fname, lname, id, float gpa);
+        addStudent(fname, lname, id, gpa);
     }
     else{
         *current = new Node(new Student(fname, lname, id, gpa));
     }
 }
 
-void addStudent(Student* student){
+void HashTable::addStudent(Student* student){
     addStudent(student->fname, student->lname, student-> id, student->gpa);
     delete student;
 }
