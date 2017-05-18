@@ -14,6 +14,7 @@ int main(){
   char input[25]; //Input of command
   cout << "Enter \"ADD\" to add a new student entry, \"PRINT\" to print out the current list of students, or \"DELETE\" to delete a student entry." << endl;
   cout << "Enter \"q\" at any time to quit the program." << endl;
+  HashTable hashTable;
 
   while (true){ //Primary loop
     cout << "Type a command: ";
@@ -30,20 +31,37 @@ int main(){
       return 0;
     }
     else if(strcmp(input, "add") == 0){
-      studentList.push_back(getStudentPointer());
+      char fname[32], lname[32];
+      int id;
+      float gpa;
+      cout << "Enter the following information.\nFirst name: ";
+      cin.getline(fname, 32);
+      cout << "Last name: ";
+      cin.getline(lname, 32);
+      cout << "ID: ";
+      cin >> id;
+      cout << "GPA: ";
+      cin >> gpa;
+      hashTable.addStudent(fname, lname, id, gpa);
+      cout << "Student added. << endl;
     }
     else if(strcmp(input, "print") == 0){
-      printStudentList(studentList);
+      hashTable.print();
     }
     else if(strcmp(input, "delete") == 0){
-      deleteStudent(studentList);
+      int id;
+      cout << "Enter ID: ";
+      cin >> id;
+      if(hashTable.deleteStudent(id)){
+        cout << "Student deleted." << endl;
+      }
+      else{
+        cout << "Student not found." << endl;
+      }
     }
     else{
       cout << "Command not found." << endl;
     }
   }
 
-
-  //studentList.push_back(ptr);
-  //cout << studentList[0]->fname << endl;
 }
