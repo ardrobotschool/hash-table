@@ -1,5 +1,9 @@
 //Hash table of students; ID is used as the key.
 #include <cstring>
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
 
 struct Student{//Datum in studentList
   Student(const char* newFname, const char* newLname, int newId, float newGpa){
@@ -14,7 +18,8 @@ struct Student{//Datum in studentList
   float gpa;
   void print(){
       //Prints student's information.
-      std::cout << lname << ", " << fname << ". ID: " << id << "  GPA: " << gpa << std::endl;
+      cout << lname << ", " << fname << ". ID: " << id << "  GPA: ";
+      cout << setprecision (2) << fixed << gpa << endl;
   }
   ~Student(){//These should be allocated on the heap
     delete[] fname;
